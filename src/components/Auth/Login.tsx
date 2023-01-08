@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
@@ -11,18 +11,34 @@ export interface ISubmitResult {
   success: boolean;
 }
 const Login = (props: any) => {
+  //React context using for login management and holding on the local storage
   const ctx = useContext(AuthContext);
+
+  //we are going to use after login or sign up for redirect
   let history = useHistory();
+
+  //login fields
   const [enteredEmail, setEnteredEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [formIsValid, setFormIsValid] = useState(false);
 
+  //login or register choice
+  const [isLogin, setIsLogin] = useState(true);
+
+  //register fields
+  const [enteredFirstName, setEnteredFirstName] = useState("");
+  const [firstNameIsValid, setFirstNameIsValid] = useState(true);
+  const [enteredSurname, setEnteredSurname] = useState("");
+  const [surnameIsValid, setSurnameIsValid] = useState(true);
+
   useEffect(() => {
     console.log("Checking form validity!");
-    setFormIsValid(emailIsValid && passwordIsValid);
-  }, [emailIsValid, passwordIsValid]);
+    setFormIsValid(emailIsValid && passwordIsValid && firstNameIsValid && surnameIsValid);
+  }, [emailIsValid, passwordIsValid,firstNameIsValid,surnameIsValid]);
+
+  //Change handlers
 
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
@@ -38,6 +54,28 @@ const Login = (props: any) => {
     setFormIsValid(emailIsValid && event.target.value.trim().length > 6);
   };
 
+  const firstNameChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setEnteredFirstName(event.target.value);
+    setFormIsValid(
+      event.target.value.trim().length > 2 &&
+        enteredEmail.includes("@") &&
+        enteredPassword.trim().length > 6
+    );
+    console.log("change girdi")
+  };
+
+  const surnameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEnteredSurname(event.target.value);
+    setFormIsValid(
+      event.target.value.trim().length > 2 &&
+        enteredEmail.includes("@") &&
+        enteredPassword.trim().length > 6
+    );
+  };
+
+  //validating inputs
   const validateEmailHandler = () => {
     setEmailIsValid(enteredEmail.includes("@"));
   };
@@ -45,8 +83,15 @@ const Login = (props: any) => {
   const validatePasswordHandler = () => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
- 
 
+  const validateFirstNameHandler = () => {
+    setFirstNameIsValid(enteredFirstName.trim().length > 1);
+  };
+  const validateSurnameHandler = () => {
+    setSurnameIsValid(enteredSurname.trim().length > 1);
+  };
+
+  //submit handler login and sign up
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formIsValid) {
@@ -54,14 +99,47 @@ const Login = (props: any) => {
       history.push("/");
     }
   };
-  const emailInputRef = useRef<HTMLDivElement>(null);
-  const passwordInputRef = useRef<HTMLDivElement>(null);
+
+  //login or signup handler
+  const switchAuthHandler = () => {
+    setIsLogin((prevState) => !prevState);
+    setFirstNameIsValid(true);
+    setSurnameIsValid(true);
+    setEmailIsValid(true);
+    setPasswordIsValid(true);
+    setEnteredFirstName("");
+    setEnteredSurname("");
+    setEnteredEmail("");
+    setEnteredPassword("");
+  };
 
   return (
     <Card className={classes.login}>
+      <h1 className={classes.loginHeader}>{isLogin ? "Login" : "Sign Up"}</h1>
       <form onSubmit={submitHandler}>
+        {!isLogin && (
+          <div>
+            <Input
+              isValid={firstNameIsValid}
+              type="text"
+              label="First Name"
+              id="firstName"
+              value={enteredFirstName}
+              onChange={firstNameChangeHandler}
+              onBlur={validateFirstNameHandler}
+            />
+            <Input
+              isValid={surnameIsValid}
+              type="text"
+              label="Surname"
+              id="surname"
+              value={enteredSurname}
+              onChange={surnameChangeHandler}
+              onBlur={validateSurnameHandler}
+            />
+          </div>
+        )}
         <Input
-          ref={emailInputRef}
           isValid={emailIsValid}
           type="email"
           label="E-mail"
@@ -71,7 +149,6 @@ const Login = (props: any) => {
           onBlur={validateEmailHandler}
         />
         <Input
-          ref={passwordInputRef}
           isValid={passwordIsValid}
           type="password"
           label="Password"
@@ -82,8 +159,15 @@ const Login = (props: any) => {
         />
         <div className={classes.actions}>
           <Button type="submit" disabled={!formIsValid}>
-            Login
+            {isLogin ? "Login" : "Create New Account"}
           </Button>
+          <button
+          type="button"
+          className={classes.buttonSignUp}
+            onClick={switchAuthHandler}
+          >
+            {isLogin ? "Create new account" : "Login with existing account"}
+          </button>
         </div>
       </form>
     </Card>
