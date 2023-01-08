@@ -1,86 +1,70 @@
 .header {
-    width: 100%;
-    height: 5rem;
-    background-color: #38015c;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+  width: 100%;
+  height: 5rem;
+  background-color: #38015c;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
-  .header a {
-    text-decoration: none;
-    color: white;
-  }
-  .header a:hover {
-    color: #CBC3E3;
-  }
+.header a {
+  text-decoration: none;
+  color: white;
+}
+.header a:hover {
+  color: #cbc3e3;
+}
 
-  .logo {
-    font-family: "Lato", sans-serif;
-    font-size: 2rem;
-    color: white;
-    margin: 0;    
-    font-weight: bold;
-  }
+.logo {
+  font-family: "Lato", sans-serif;
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+  font-weight: bold;
+}
 
-  .searchInput {
-    border-radius: 0.5em;
-    width: 30rem;
-    height: 2.5rem;
-  }
-  .searchIcon {
-    margin-left: 0.8rem;
-  }
+.searchInput {
+  border-radius: 0.5em;
+  width: 30rem;
+  height: 2.5rem;
+}
+.searchIcon {
+  margin-left: 0.8rem;
+}
 
-  .searchButton {
-    margin-left: 0.8rem;
-    border-color: #fff;
-  }
+.searchButton {
+  margin-left: 0.8rem;
+  border-color: #fff;
+}
 
-  .headerRight {
-    display: flex;
-    align-items: center;
-    height: 2rem;
-    font-family: "Lato", sans-serif;
-    color: white;
-    margin: 0;
-  }
+.headerRight {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  font-family: "Lato", sans-serif;
+  color: white;
+  margin: 0;
+}
 
-  .btn1 {
-    
-    margin-left: 1rem;
-    border: 1px white ;
-  }
+.btn1 {
+  margin-left: 1rem;
+  background: #dd0db0;
+  border: 1px solid #dd0db0;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 20px;
+}
 
-
-
-
-
-
-
-
- 
-
-
-
- 
-
-
-  .header button {
-    font: inherit;
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    font-weight: bold;
-    padding: 0.5rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
- 
-
-
-
-
-
+.header button {
+  font: inherit;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
