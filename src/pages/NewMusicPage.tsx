@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import NewMusic from "../components/Music/NewMusic";
 
 export default function NewMusicPage() {
   return (
-    <div>NewMusicPage</div>
-  )
+    <React.Fragment>
+      <NewMusic />
+    </React.Fragment>
+  );
 }
