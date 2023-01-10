@@ -29,7 +29,7 @@ const MainHeader = () => {
         {ctx.isLoggedIn && (
           <div className={classes.headerRight}>
             <div>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile">Favorites</Link>
             </div>
             <div style={{ marginLeft: "1em" }}>
               <Link to="new-music">New Music</Link>

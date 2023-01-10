@@ -7,9 +7,7 @@ import AuthContext from "../../store/auth-context";
 import Input from "../UI/Input/Input";
 import { useHistory } from "react-router-dom";
 
-export interface ISubmitResult {
-  success: boolean;
-}
+
 const Login = (props: any) => {
   //React context using for login management and holding on the local storage
   const ctx = useContext(AuthContext);

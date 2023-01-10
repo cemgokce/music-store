@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./components/Layout/Layout";
 import { Route, Switch } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import ProfilePage from "./pages/ProfilPage";
+import FovoritesPage from "./pages/FovoritesPage";
 import NewMusicPage from "./pages/NewMusicPage";
 import LoginPage from "./pages/LoginPage";
 
@@ -15,7 +15,7 @@ function App() {
             <MainPage />
           </Route>
           <Route path="/profile" exact>
-            <ProfilePage />
+            <FovoritesPage />
           </Route>
           <Route path="/new-music" exact>
             <NewMusicPage />

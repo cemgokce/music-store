@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
 import { musicActions } from "../../store/music-slice";
 import { useHistory } from "react-router-dom";
 
@@ -13,6 +14,8 @@ const NewMusic = (props: any) => {
   const [name, setName] = useState("");
   const [singer, setSinger] = useState("");
   const [link, setLink] = useState("");
+
+  let musicTotal = useSelector((state:RootState)=>state.music.totalMusic)
 
   const dispatch = useDispatch();
   const hisory = useHistory();
@@ -30,12 +33,13 @@ const NewMusic = (props: any) => {
   const linkChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLink(event.target.value);
   };
-
-  //submit handler login and sign up
   const submitHandler = () => {
+    const id = musicTotal+1;
+    console.log("id"+ id)
     console.log("work");
-    const abc = { name: "lale", singer: "cem", link: "HPuYXQL7BTo", id: 5 };
-    dispatch(musicActions.addMusic(abc));
+    const newMusic = { name, singer, link , id };
+    console.log(newMusic)
+    dispatch(musicActions.addMusic(newMusic));
     hisory.push("/")
 
   };
