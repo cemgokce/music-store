@@ -33,10 +33,19 @@
     text-align: center;
   }
   
-  @media (min-width: 768px) {
-    .control {
-      align-items: center;
-      flex-direction: row;
+
+
+  
+  @media screen and (min-device-width: 481px) and (max-device-width: 768px) { 
+    .login {
+      max-width: 25rem;
     }
   }
+  
+  @media only screen and (max-device-width: 480px) {
+    .login {
+      max-width: 15rem;
+    }
+  }
+  
   

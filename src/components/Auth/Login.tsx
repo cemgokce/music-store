@@ -180,7 +180,7 @@ const Login = (props: any) => {
         />
         <div className={classes.actions}>
           <div>
-            <Button type="submit" disabled={!formIsValid}>
+            <Button type="submit" disabled={!formIsValid} className={classes.submitBtn}>
               {isLogin ? "Login" : "Create New Account"}
             </Button>
             {isLogin && (

@@ -15,7 +15,7 @@ const NewMusic = (props: any) => {
   const [singer, setSinger] = useState("");
   const [link, setLink] = useState("");
 
-  let musicTotal = useSelector((state:RootState)=>state.music.totalMusic)
+  let musicTotal = useSelector((state: RootState) => state.music.totalMusic);
 
   const dispatch = useDispatch();
   const hisory = useHistory();
@@ -34,14 +34,11 @@ const NewMusic = (props: any) => {
     setLink(event.target.value);
   };
   const submitHandler = () => {
-    const id = musicTotal+1;
-    console.log("id"+ id)
-    console.log("work");
-    const newMusic = { name, singer, link , id };
-    console.log(newMusic)
+    const id = musicTotal + 1;
+    const newMusic = { name, singer, link, id };
+    console.log(newMusic);
     dispatch(musicActions.addMusic(newMusic));
-    hisory.push("/")
-
+    hisory.push("/");
   };
 
   return (
@@ -57,7 +54,7 @@ const NewMusic = (props: any) => {
         />
         <Input
           type="text"
-          label="Singer name"
+          label="Singer Name"
           id="singer"
           value={singer}
           onChange={singerChangeHandler}
@@ -65,15 +62,17 @@ const NewMusic = (props: any) => {
 
         <Input
           type="link"
-          label="Link (Youtube Embeded Link) "
+          label="Youtube Link"
           id="link"
           value={link}
           onChange={linkChangeHandler}
         />
-        <div className={classes.actions}>
-          <Button type="submit">Send</Button>
-        </div>
       </form>
+      <div className={classes.actions}>
+        <Button type="button" onClick={submitHandler}>
+          Send
+        </Button>
+      </div>
     </Card>
   );
 };

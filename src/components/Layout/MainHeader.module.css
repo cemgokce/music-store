@@ -1,6 +1,10 @@
 .header {
   width: 100%;
   height: 5rem;
+  z-index: 999px;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: #38015c;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -64,4 +68,34 @@
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .search {
+    display: none;
+  }
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .search {
+    display: none;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .headerRight {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .search {
+    display: none;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+  .headerRight {
+    font-size: 0.75rem;
+  }
 }

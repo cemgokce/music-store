@@ -1,26 +1,126 @@
-
 .musicCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    width: 90%;
-    max-width: 40rem;
-    margin: 2rem auto;
-    padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  
 }
 
 .name {
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 75%;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 .frame {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+iframe{
+    width: 40rem;
+    height: 30rem;
+}
+
+
+.deleteBtn {
+  background-color: white;
+  border: none;
+  padding: 0;
+  width: 1rem;
 }
 
 
 
 
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .musicCard {
+    max-width: 30rem;
+  }
+  
+  .header {
+    font-size: 1.2rem;
+    
+  }
+  
+  .name {
+    font-size: 1.2rem;
+    
+  }
+  .iframe {
+    width: 30rem;
+    height: 30rem;
+  }
+  
+  .deleteBtn {
+    width: 0.9rem;
+  }
+  .btnFav{
+    width: 14rem;
+  }
+
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .musicCard {
+    max-width: 27rem;
+  }
+  
+  .header {
+    font-size: 1rem;    
+  }
+  
+  .name {
+    font-size: 1rem;
+    
+  }
+  .iframe {
+    width: 27rem;
+    height: 20rem;
+  }
+  .deleteBtn {
+    width: 0.8rem;
+  }
+  .btnFav{
+    width: 13rem;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .musicCard {
+    max-width: 20rem;
+  }
+  
+  .header {
+    font-size: 0.8rem;    
+  }
+  
+  .name {
+    font-size: 0.8rem;
+    
+  }
+  .iframe {
+    width: 20rem;
+    height: 12rem;
+  }
+  .deleteBtn {
+    width: 0.5rem;
+  }
+  .btnFav{
+    width: 11rem;
+  }
+
+ 
+}
