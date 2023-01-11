@@ -6,6 +6,10 @@ import Button from "../UI/Button/Button";
 import AuthContext from "../../store/auth-context";
 import Input from "../UI/Input/Input";
 import { useHistory } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import { BsQuestionLg } from "react-icons/bs";
+import { IconContext } from "react-icons";
 
 import userData from "../../mockData/userData.json";
 
@@ -96,17 +100,23 @@ const Login = (props: any) => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formIsValid) {
-      const found = userData.users.find((user) => user.email === enteredEmail);
-      if (found) {
-        if(found.password===enteredPassword){
-          ctx.onLogin(enteredEmail, enteredPassword);           
-          history.push("/");
+      if (isLogin) {
+        const found = userData.users.find(
+          (user) => user.email === enteredEmail
+        );
+        if (found) {
+          if (found.password === enteredPassword) {
+            ctx.onLogin(enteredEmail, enteredPassword);
+            history.push("/");
+          } else {
+            alert("pasword incorrect");
+          }
+        } else {
+          alert("email incorrect");
         }
-        else{
-          alert("pasword incorrect")
-        }
-      } else {
-        alert("email incorrect");
+      }else{
+        ctx.onLogin(enteredEmail, enteredPassword);
+        history.push("/");
       }
     }
   };
@@ -169,9 +179,21 @@ const Login = (props: any) => {
           onBlur={validatePasswordHandler}
         />
         <div className={classes.actions}>
-          <Button type="submit" disabled={!formIsValid}>
-            {isLogin ? "Login" : "Create New Account"}
-          </Button>
+          <div>
+            <Button type="submit" disabled={!formIsValid}>
+              {isLogin ? "Login" : "Create New Account"}
+            </Button>
+            {isLogin && (
+              <span style={{ marginLeft: "1rem" }}>
+                <a id="question">
+                  <IconContext.Provider value={{ color: "#741188" }}>
+                    <BsQuestionLg />
+                  </IconContext.Provider>
+                </a>
+                <Tooltip anchorId="question" html="cem@mail.com<br />1234567" />
+              </span>
+            )}
+          </div>
           <button
             type="button"
             className={classes.buttonSignUp}
