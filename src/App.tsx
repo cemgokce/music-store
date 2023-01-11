@@ -14,14 +14,17 @@ function App() {
           <Route path="/" exact>
             <MainPage />
           </Route>
-          <Route path="/profile" exact>
+          <Route path="/favorite">
             <FovoritesPage />
           </Route>
-          <Route path="/new-music" exact>
+          <Route path="/new-music">
             <NewMusicPage />
           </Route>
-          <Route path="/login" exact>
+          <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path='/music/:searchKey/search'>
+            <MainPage />
           </Route>
         </Switch>
       </Layout>

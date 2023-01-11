@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./MainPage.module.css";
 import Music from "../components/Music/Music";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useParams } from "react-router-dom";
 
 const MainPage = () => {
-  const musicItems = useSelector((state: RootState) => state.music.musics);
-  const musicTotal = useSelector((state: RootState) => state.music.totalMusic);
-  console.log(musicItems);
+  let musicItems = useSelector((state: RootState) => state.music.musics);
+  let filteredItems;
+
+  // const musicTotal = useSelector((state: RootState) => state.music.totalMusic);
+
+  const params = useParams<{ searchKey: string }>();
+  const { searchKey } = params;
+  if (searchKey) {
+    filteredItems = musicItems.filter(
+      (item) => item.name.includes(searchKey) || item.singer.includes(searchKey)
+    );
+  } else {
+    filteredItems = musicItems;
+  }
 
   return (
     <div className={classes.container}>
-      <h1 style={{ textAlign: "center" }}>Total musics {musicTotal}</h1>
-      {musicItems.map((e) => {
+      <h1 style={{ textAlign: "center" }}>Total musics {filteredItems.length}</h1>
+      {filteredItems.map((e) => {
         return (
-          <Music name={e.name} singer={e.singer} link={e.link} key={e.id} id={e.id} addedFav={e.addedFav}/>
+          <Music
+            name={e.name}
+            singer={e.singer}
+            link={e.link}
+            key={e.id}
+            id={e.id}
+            addedFav={e.addedFav}
+          />
         );
       })}
     </div>

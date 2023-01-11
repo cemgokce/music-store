@@ -7,6 +7,7 @@ import AuthContext from "../../store/auth-context";
 import Input from "../UI/Input/Input";
 import { useHistory } from "react-router-dom";
 
+import userData from "../../mockData/userData.json";
 
 const Login = (props: any) => {
   //React context using for login management and holding on the local storage
@@ -33,8 +34,10 @@ const Login = (props: any) => {
 
   useEffect(() => {
     console.log("Checking form validity!");
-    setFormIsValid(emailIsValid && passwordIsValid && firstNameIsValid && surnameIsValid);
-  }, [emailIsValid, passwordIsValid,firstNameIsValid,surnameIsValid]);
+    setFormIsValid(
+      emailIsValid && passwordIsValid && firstNameIsValid && surnameIsValid
+    );
+  }, [emailIsValid, passwordIsValid, firstNameIsValid, surnameIsValid]);
 
   //Change handlers
 
@@ -61,7 +64,7 @@ const Login = (props: any) => {
         enteredEmail.includes("@") &&
         enteredPassword.trim().length > 6
     );
-    console.log("change girdi")
+    console.log("change girdi");
   };
 
   const surnameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,8 +96,18 @@ const Login = (props: any) => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formIsValid) {
-      ctx.onLogin(enteredEmail, enteredPassword);
-      history.push("/");
+      const found = userData.users.find((user) => user.email === enteredEmail);
+      if (found) {
+        if(found.password===enteredPassword){
+          ctx.onLogin(enteredEmail, enteredPassword);           
+          history.push("/");
+        }
+        else{
+          alert("pasword incorrect")
+        }
+      } else {
+        alert("email incorrect");
+      }
     }
   };
 
@@ -160,8 +173,8 @@ const Login = (props: any) => {
             {isLogin ? "Login" : "Create New Account"}
           </Button>
           <button
-          type="button"
-          className={classes.buttonSignUp}
+            type="button"
+            className={classes.buttonSignUp}
             onClick={switchAuthHandler}
           >
             {isLogin ? "Create new account" : "Login with existing account"}
