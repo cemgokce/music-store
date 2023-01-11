@@ -11,6 +11,7 @@ import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
 
 const NewMusic = (props: any) => {
+
   const [name, setName] = useState("");
   const [singer, setSinger] = useState("");
   const [link, setLink] = useState("");
@@ -20,7 +21,6 @@ const NewMusic = (props: any) => {
   const dispatch = useDispatch();
   const hisory = useHistory();
 
-  //Change handlers
 
   const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -33,6 +33,7 @@ const NewMusic = (props: any) => {
   const linkChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLink(event.target.value);
   };
+  
   const submitHandler = () => {
     const id = musicTotal + 1;
     const newMusic = { name, singer, link, id };

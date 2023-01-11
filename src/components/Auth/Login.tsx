@@ -10,6 +10,8 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { BsQuestionLg } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import userData from "../../mockData/userData.json";
 
@@ -36,8 +38,9 @@ const Login = (props: any) => {
   const [enteredSurname, setEnteredSurname] = useState("");
   const [surnameIsValid, setSurnameIsValid] = useState(true);
 
+
+  //Checking form validity!
   useEffect(() => {
-    console.log("Checking form validity!");
     setFormIsValid(
       emailIsValid && passwordIsValid && firstNameIsValid && surnameIsValid
     );
@@ -96,6 +99,32 @@ const Login = (props: any) => {
     setSurnameIsValid(enteredSurname.trim().length > 1);
   };
 
+
+  //notification setting
+  const notifyError = () =>
+    toast.error("🦄 Wrong email or password", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const notifySucces = () =>
+    toast.error("🦄 Wow so easy!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   //submit handler login and sign up
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -109,14 +138,15 @@ const Login = (props: any) => {
             ctx.onLogin(enteredEmail, enteredPassword);
             history.push("/");
           } else {
-            alert("pasword incorrect");
+            notifyError();
           }
         } else {
-          alert("email incorrect");
+          notifyError();
         }
-      }else{
+      } else {
         ctx.onLogin(enteredEmail, enteredPassword);
         history.push("/");
+        notifySucces();
       }
     }
   };
@@ -137,6 +167,20 @@ const Login = (props: any) => {
   return (
     <Card className={classes.login}>
       <h1 className={classes.loginHeader}>{isLogin ? "Login" : "Sign Up"}</h1>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
       <form onSubmit={submitHandler}>
         {!isLogin && (
           <div>
@@ -180,7 +224,11 @@ const Login = (props: any) => {
         />
         <div className={classes.actions}>
           <div>
-            <Button type="submit" disabled={!formIsValid} className={classes.submitBtn}>
+            <Button
+              type="submit"
+              disabled={!formIsValid}
+              className={classes.submitBtn}
+            >
               {isLogin ? "Login" : "Create New Account"}
             </Button>
             {isLogin && (

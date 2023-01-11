@@ -6,8 +6,10 @@ import { IconContext } from "react-icons";
 import AuthContext from "../../store/auth-context";
 
 const MainHeader = () => {
+  //use contex for header visibility
   const ctx = useContext(AuthContext);
 
+  //history we are using for search bar
   const history = useHistory();
   const [searchKey, setSearchKey] = useState("");
   const [searchIsActive, setSearchIsActive] = useState(false);
@@ -28,7 +30,6 @@ const MainHeader = () => {
       // setSearchKey("");
     } else if (searchKey === "") {
       history.replace("/");
-      console.log("yööönendi");
     }
   };
   const searchClearHandler = () => {

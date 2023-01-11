@@ -9,8 +9,6 @@ const MainPage = () => {
   let musicItems = useSelector((state: RootState) => state.music.musics);
   let filteredItems;
 
-  // const musicTotal = useSelector((state: RootState) => state.music.totalMusic);
-
   const params = useParams<{ searchKey: string }>();
   const { searchKey } = params;
   if (searchKey) {
