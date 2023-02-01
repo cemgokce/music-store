@@ -1,6 +1,5 @@
 # Music Store
 
-AWS S3 Link [Music Store](http://task-bucket-react.s3-website-us-east-1.amazonaws.com).
 
 I developed a project that I thought of as a music store.\
 I tried to use all the requirements in the project, so there were places where I used both use context and redux.\
